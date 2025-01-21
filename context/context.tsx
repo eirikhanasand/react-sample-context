@@ -1,25 +1,33 @@
-import { createContext } from 'react'
+import { createContext, useEffect } from 'react'
 import { useState } from 'react'
 
-const AppContext = createContext({
-    lang: 'no',
-    switchLang: () => {},
-})
+const AppContext = createContext({})
 
 export function Provider({ children }: { children: React.ReactNode }) {
-    const { lang, switchLang } = LangSlice()
+    const [isLogged, setIsLogged] = useState(false);
+  console.log("test");
+  useEffect(() => {
+    fetch("http://10.0.2.2:3000/api/auth")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("this is data", data);
+        setIsLogged(data);
+      });
+  }, []);
 
-    return (
-        <AppContext.Provider value={{ lang, switchLang }}>
-            {children}
-        </AppContext.Provider>
-    )
+  return (
+    <>
+      <AppContext.Provider value={{ isLogged, setIsLogged }}>
+        {children}
+      </AppContext.Provider>
+    </>
+  );
 }
 
 export default AppContext
 
 export const LANGUAGES = {
-    NO: 'no',
+    NO: 'en',
     EN: 'en',
 }
 
