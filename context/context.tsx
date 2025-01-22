@@ -1,23 +1,25 @@
 import { createContext, useEffect } from 'react'
 import { useState } from 'react'
 
-const AppContext = createContext({})
+const AppContext = createContext({
+  login: false,
+  setLoggedIn: (() => {}) as Function
+})
 
 export function Provider({ children }: { children: React.ReactNode }) {
-    const [isLogged, setIsLogged] = useState(false);
-  console.log("test");
-  useEffect(() => {
-    fetch("http://10.0.2.2:3000/api/auth")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("this is data", data);
-        setIsLogged(data);
-      });
+    const [login, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+      console.log("Waiting 10s then logging in.")
+      setTimeout(() => {
+        setLoggedIn(true)
+      }, 10000);
   }, []);
 
+  console.log(login)
   return (
     <>
-      <AppContext.Provider value={{ isLogged, setIsLogged }}>
+      <AppContext.Provider value={{ login, setLoggedIn }}>
         {children}
       </AppContext.Provider>
     </>

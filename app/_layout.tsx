@@ -3,9 +3,9 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import 'react-native-reanimated';
-import { Provider } from '@/context/context';
+import AppContext, { Provider } from '@/context/context';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Text, View } from 'react-native';
 import Login from './login';
@@ -22,13 +22,12 @@ export default function ActualRootLayout() {
 }
 
  function RootLayout() {
-  const login = false
+  const { login, setLoggedIn } = useContext(AppContext)
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
-  
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
