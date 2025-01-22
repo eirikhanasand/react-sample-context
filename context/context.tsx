@@ -12,6 +12,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
       console.log("Waiting 10s then logging in.")
       setTimeout(() => {
+        console.log("Automatically logged in after 10s")
         setLoggedIn(true)
       }, 10000);
   }, []);

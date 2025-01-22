@@ -1,7 +1,7 @@
 
 import AppContext from '@/context/context';
 import { useContext } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 export default function Login() {
   const { login, setLoggedIn } = useContext(AppContext)
   console.log("login in login.tsx", login)
@@ -18,16 +18,3 @@ export default function Login() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-});

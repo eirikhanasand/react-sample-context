@@ -22,7 +22,7 @@ export default function ActualRootLayout() {
 }
 
  function RootLayout() {
-  const { login, setLoggedIn } = useContext(AppContext)
+  const { login } = useContext(AppContext)
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
